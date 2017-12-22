@@ -1,0 +1,47 @@
+---
+- name: Oracle JDK | yum install yum-utils
+  yum:
+    name: yum-utils
+    state: present
+  tags: java
+
+- name: Oracle JDK | Remove OpenJDK versions before install Oracle JDK
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - java-1.6.0-openjdk
+    - java-1.7.0-openjdk
+    - java-1.8.0-openjdk
+    - java-1.6.0-openjdk-headless
+    - java-1.7.0-openjdk-headless
+    - java-1.8.0-openjdk-headless
+  tags: java
+
+- name: Oracle JDK | Check if package is installed
+  command: yum list jdk1.8
+  register: jdk
+  ignore_errors: True
+  tags: java
+
+- name: Oracle JDK | Copy file
+  copy:
+    src: "files/{{ jdk_package }}"
+    dest: "/tmp/{{ jdk_package }}"
+  when: jdk.rc != 0 
+  ignore_errors: True
+  tags: java
+
+- name: Oracle JDK | Install JDK8
+  yum:
+    name: "/tmp/{{ jdk_package }}"
+    state: present
+  when: jdk.rc != 0
+  tags: java
+
+- name: Oracle JDK | Remove file
+  file: 
+    name: "/tmp/{{ jdk_package }}"
+    state: absent
+  when: jdk.rc == 0
+  tags: java
