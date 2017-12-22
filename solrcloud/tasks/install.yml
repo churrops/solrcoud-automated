@@ -1,0 +1,41 @@
+---
+- name: SolrCloud | Ensure dependencies are installed.
+  package: name={{ item }} state=present
+  with_items:
+    - lsof
+    - wget
+
+- name: SolrCloud | Ensure Solr Group
+  group: 
+    name: "{{ solr_group }}"
+
+- name: SolrCloud | Ensure Solr User
+  user:
+    name: "{{ solr_user }}"
+    group: "{{ solr_group }}"
+    home: "/bin/false"
+    system: yes
+    createhome: yes
+
+- name: SolrCloud | Ensure Solr dirs exists
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ solr_user }}"
+    group: "{{ solr_group }}"
+  with_items:
+    - "{{ solr_log_dir }}"
+    - "{{ solr_data_dir }}"
+
+- name: SolrCloud | Copy Solr Binary Package
+  copy:
+    src: "files/{{ solr_cloud_package }}"
+    dest: "{{ solr_download_packages_dir }}/{{ solr_cloud_package }}"
+    force: no
+
+#- name: SolrCloud | Firewalld
+#  firewalld:
+#    port: "{{ solr_cloud_port }}/tcp"
+#    permanent: true
+#    state: enabled
+#    zone: public

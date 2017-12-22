@@ -1,0 +1,9 @@
+---
+solr_cloud_version: 7.1.0
+solr_jdk_version: "8u151"
+solr_user: solr
+solr_group: solr
+
+solr_log_dir: /var/log/solr
+solr_home: /opt/solr
+solr_data_dir: "{{ solr_home }}/data"

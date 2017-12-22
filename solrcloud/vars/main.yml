@@ -1,0 +1,13 @@
+---
+
+# Diretorio no host remoto para a cópia dos pacotes
+solr_download_packages_dir: "/opt/packages"
+
+#  Informações a respeito do Java
+solr_jdk_package_name: "jdk-{{ solr_jdk_version }}-linux-x64.rpm"
+
+
+solr_cloud_build_name: "solr-{{ solr_cloud_version }}"
+solr_cloud_package: "{{ solr_cloud_build_name }}.tgz"
+solr_cloud_url: "http://archive.apache.org/dist/lucene/solr/{{ solr_cloud_version }}/{{ solr_cloud_package }}"
+

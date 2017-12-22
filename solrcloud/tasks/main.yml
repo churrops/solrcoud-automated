@@ -1,0 +1,3 @@
+# tasks file for solrcloud
+---
+- include_tasks: install.yml
