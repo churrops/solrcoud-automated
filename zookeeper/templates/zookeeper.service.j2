@@ -1,0 +1,15 @@
+[Unit]
+Description={{ zk_user }}-server
+After=syslog.target
+
+[Service]
+SyslogIdentifier={{ zk_user }}
+TimeoutStartSec=10min
+Type=forking
+ExecStart={{ zk_home_dir }}/{{ zk_user }}/bin/zkServer.sh start
+ExecStop={{ zk_home_dir }}/{{ zk_user }}/bin/zkServer.sh stop
+Restart={{ zk_home_dir }}/{{ zk_user }}/bin/zkServer.sh restart
+
+[Install]
+WantedBy=multi-user.target
+

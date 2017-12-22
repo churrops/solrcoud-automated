@@ -1,0 +1,6 @@
+---
+- name: Zookeeper |
+  service:
+    name: "{{ zk_user }}"
+    state: restarted
+

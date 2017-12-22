@@ -1,0 +1,33 @@
+---
+- name:
+  file:
+    path: "{{ zk_dataDir }}"
+    owner: "{{ zk_user }}"
+    group: "{{ zk_group }}"
+    state: directory
+
+- name: Zookeeper | Create Datadir
+  file:
+    path: "{{ zk_dataDir }}"
+    state: directory
+
+- name: Zookeeper | Copy zoo.cfg file
+  template: 
+    src: templates/zoo.cfg.j2
+    dest: "{{ zk_home_dir }}/{{ zk_user }}/conf/zoo.cfg"
+    owner: zookeeper
+    group: zookeeper
+
+- name: Zookeeper | Copy systemd file
+  template:
+    src: templates/zookeeper.service.j2
+    dest: "/etc/systemd/system/{{ zk_user }}.service"
+    owner: root
+    group: root
+
+- name: Zookeeper | Start Zookeeper Service
+  service:
+    name: "{{ zk_user }}"
+    state: "{{ zk_state }}"
+    daemon_reload: yes
+
