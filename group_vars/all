@@ -1,3 +1,5 @@
 ---
 jdk_version: "8u151"
 jdk_package: "jdk-{{ jdk_version }}-linux-x64.rpm"
+jdk_get_url: "http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.rpm"
+jdk_headers: "Cookie:oraclelicense=accept-securebackup-cookie"

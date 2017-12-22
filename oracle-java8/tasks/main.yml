@@ -24,13 +24,21 @@
   ignore_errors: True
   tags: java
 
-- name: Oracle JDK | Copy file
-  copy:
-    src: "files/{{ jdk_package }}"
+- name: Oracle JDK | Download
+  get_url:
+    url: "{{ jdk_get_url }}"
+    headers: "{{ jdk_headers }}"
     dest: "/tmp/{{ jdk_package }}"
   when: jdk.rc != 0 
-  ignore_errors: True
-  tags: java
+#  tags: java
+
+#- name: Oracle JDK | Copy file
+#  copy:
+#    src: "files/{{ jdk_package }}"
+#    dest: "/tmp/{{ jdk_package }}"
+#  when: jdk.rc != 0 
+#  ignore_errors: True
+#  tags: java
 
 - name: Oracle JDK | Install JDK8
   yum:

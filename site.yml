@@ -4,12 +4,18 @@
   remote_user: root
 
   roles:
-#    - { role: oracle-java8, when: ansible_os_family == 'RedHat' }
+    - { role: oracle-java8, when: ansible_os_family == 'RedHat' }
 
-- name: Zookeeper and SolrCloud
-  hosts: solrcloud
+- name: Zookeeper
+  hosts: zookeeper
   remote_user: root
 
   roles:
     - { role: zookeeper,  when: ansible_os_family == 'RedHat' }
+
+- name: SolrCloud
+  hosts: solrcloud
+  remote_user: root
+
+  roles:
 #    - { role: solrcloud, when: ansible_os_family == 'RedHat' }

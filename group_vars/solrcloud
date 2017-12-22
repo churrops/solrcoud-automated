@@ -21,11 +21,14 @@ solr_cloud_url: "http://archive.apache.org/dist/lucene/solr/{{ solr_cloud_versio
 ## Variables - Zookeper
 ##################################
 zk_version: 3.4.10
-zk_package: "zookeeper-{{ zk_version }}.tar.gz"
-zk_tmp_dir: /tmp
-zk_home_dir: /opt
 zk_user: zookeeper
 zk_group: zookeeper
+zk_package: "zookeeper-{{ zk_version }}.tar.gz"
+
+zk_tmp_dir: /tmp
+zk_home_dir: /opt
+zk_get_url: "https://archive.apache.org/dist/zookeeper/zookeeper-{{ zk_version }}/{{ zk_package }}"
+#zk_get_url: "{{ zk_tmp_dir }}/{{ zk_package }}"
 
 # zoo.cfg
 zk_port: 2181
