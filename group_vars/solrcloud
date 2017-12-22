@@ -1,0 +1,34 @@
+---
+##################################
+## Variables - Solr
+##################################
+solr_cloud_version: 7.1.0
+solr_user: solr
+solr_group: solr
+
+solr_log_dir: /var/log/solr
+solr_home: /opt/solr
+solr_data_dir: "{{ solr_home }}/data"
+
+# Diretorio no host remoto para a cópia dos pacotes
+solr_download_packages_dir: "/opt/packages"
+
+solr_cloud_build_name: "solr-{{ solr_cloud_version }}"
+solr_cloud_package: "{{ solr_cloud_build_name }}.tgz"
+solr_cloud_url: "http://archive.apache.org/dist/lucene/solr/{{ solr_cloud_version }}/{{ solr_cloud_package }}"
+
+##################################
+## Variables - Zookeper
+##################################
+zk_version: 3.4.10
+zk_package: "zookeeper-{{ zk_version }}.tar.gz"
+zk_tmp_dir: /tmp
+zk_home_dir: /opt
+zk_user: zookeeper
+zk_group: zookeeper
+
+# zoo.cfg
+zk_port: 2181
+zk_tickTime: 2000
+zk_dataDir: "{{ zk_home_dir }}/{{ zk_user }}/data"
+zk_state: started
