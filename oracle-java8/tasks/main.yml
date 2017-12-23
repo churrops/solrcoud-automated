@@ -30,8 +30,9 @@
     headers: "{{ jdk_headers }}"
     dest: "/tmp/{{ jdk_package }}"
   when: jdk.rc != 0 
-#  tags: java
+  tags: java
 
+#### Use this task if exist jdk rpm file in files directory
 #- name: Oracle JDK | Copy file
 #  copy:
 #    src: "files/{{ jdk_package }}"

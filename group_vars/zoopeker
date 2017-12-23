@@ -1,0 +1,22 @@
+---
+##################################
+## Variables - Zookeper
+##################################
+zk_version: 3.4.10
+zk_user: zookeeper
+zk_group: zookeeper
+zk_package: "zookeeper-{{ zk_version }}.tar.gz"
+zk_servers: "{{ groups['zookeeper'] }}"
+
+zk_tmp_dir: /tmp
+zk_home_dir: /opt
+zk_get_url: "https://archive.apache.org/dist/zookeeper/zookeeper-{{ zk_version }}/{{ zk_package }}"
+#zk_get_url: "{{ zk_tmp_dir }}/{{ zk_package }}"
+
+# zoo.cfg
+zk_port: 2181
+zk_tickTime: 2000
+zk_dataDir: "{{ zk_home_dir }}/{{ zk_user }}/data"
+zk_logDir: "{{ zk_home_dir }}/{{ zk_user }}/logs"
+zk_state: started
+
