@@ -16,12 +16,14 @@
     owner: zookeeper
     group: zookeeper
   with_items: "{{ groups['zookeeper'] }}"
+  notify: restart zookeeper
 
 - name: Zookeeper | Create myid file
   template:
     src: templates/myid.j2
     dest: "{{ zk_dataDir }}/myid"
   ignore_errors: True
+  notify: restart httpd
 
 - name: Zookeeper | Copy systemd file
   template:

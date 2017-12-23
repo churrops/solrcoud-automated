@@ -1,5 +1,7 @@
 # Solr Cloud with external Zookeeper
 
+# PROJETO EM DESENVOLVIMENTO!
+
 ## 1. Baixando o projeto
 
 ```sh

@@ -1,5 +1,5 @@
 ---
-- name: Zookeeper |
+- name: restart zookeeper
   service:
     name: "{{ zk_user }}"
     state: restarted
