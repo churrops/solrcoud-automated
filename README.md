@@ -1,4 +1,4 @@
-#### Solr Cloud with external Zookeeper
+# Solr Cloud with external Zookeeper
 
 ## 1. Baixando o projeto
 
@@ -11,7 +11,6 @@ cd solrcloud-automated
 
 ```sh
 vim hosts 
-```
 
 [solrcloud]
 192.168.99.100 ansible_user=root ansible_ssh_pass=template
@@ -27,6 +26,15 @@ vim hosts
 ## 3. Ajustando as variáveis
 
 
+```sh
+ls group__vars
 
+all  solrcloud  zoopeker
+```
 
+## Realizando deploy
+
+```sh
+./deploy.sh
+```
 
