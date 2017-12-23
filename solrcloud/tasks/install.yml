@@ -27,11 +27,11 @@
     - "{{ solr_log_dir }}"
     - "{{ solr_data_dir }}"
 
-- name: SolrCloud | Copy Solr Binary Package
-  copy:
-    src: "files/{{ solr_cloud_package }}"
-    dest: "{{ solr_download_packages_dir }}/{{ solr_cloud_package }}"
-    force: no
+#- name: SolrCloud | Copy Solr Binary Package
+#  copy:
+#    src: "files/{{ solr_cloud_package }}"
+#    dest: "{{ solr_download_packages_dir }}/{{ solr_cloud_package }}"
+#    force: no
 
 #- name: SolrCloud | Firewalld
 #  firewalld:

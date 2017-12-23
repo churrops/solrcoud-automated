@@ -3,3 +3,7 @@ dataDir={{ zk_dataDir }}
 tickTime={{ zk_tickTime }}
 initLimit=10
 syncLimit=5
+
+{% for host in zk_servers %}
+server.{{ loop.index }}={{ hostvars[host].ansible_default_ipv4.address }}:2888:3888
+{% endfor %}

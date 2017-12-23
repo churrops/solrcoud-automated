@@ -1,15 +1,13 @@
 ---
-- name:
+- name: Zookeeper | Create dataDir and logDir
   file:
-    path: "{{ zk_dataDir }}"
+    path: "{{ item }}"
     owner: "{{ zk_user }}"
     group: "{{ zk_group }}"
     state: directory
-
-- name: Zookeeper | Create Datadir
-  file:
-    path: "{{ zk_dataDir }}"
-    state: directory
+  with_items:
+    - "{{ zk_dataDir }}"
+    - "{{ zk_logDir }}"
 
 - name: Zookeeper | Copy zoo.cfg file
   template: 
@@ -17,6 +15,12 @@
     dest: "{{ zk_home_dir }}/{{ zk_user }}/conf/zoo.cfg"
     owner: zookeeper
     group: zookeeper
+  with_items: "{{ groups['zookeeper'] }}"
+
+- name: Zookeeper | Create myid file
+  template:
+    src: templates/myid.j2
+    dest: "{{ zk_dataDir }}/myid"
 
 - name: Zookeeper | Copy systemd file
   template:

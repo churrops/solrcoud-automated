@@ -10,6 +10,7 @@
     home: "/bin/false"
     system: yes
 
+### Use this task for 
 #- name: Zookepeer | Copy binary package
 #  copy:
 #    src: "files/{{ zk_package }}"

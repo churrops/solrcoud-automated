@@ -18,4 +18,4 @@
   remote_user: root
 
   roles:
-#    - { role: solrcloud, when: ansible_os_family == 'RedHat' }
+    - { role: solrcloud, when: ansible_os_family == 'RedHat' }
