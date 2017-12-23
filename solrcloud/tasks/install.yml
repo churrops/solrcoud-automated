@@ -4,6 +4,7 @@
   with_items:
     - lsof
     - wget
+    - vim
 
 - name: SolrCloud | Ensure Solr Group
   group: 
@@ -17,6 +18,22 @@
     system: yes
     createhome: yes
 
+- name: SolrCloud | Extract Package
+  unarchive:
+    src: "{{ solr_get_url }}"
+    dest: "{{ solr_base }}"
+    owner: "{{ solr_user }}"
+    group: "{{ solr_group }}"
+    remote_src: yes
+    creates: "{{ solr_base }}/solr-{{ solr_cloud_version }}/server/etc/jetty.xml"
+
+- name: Zookepeer | Create symbol link
+  file:
+    src: "{{ solr_base }}/solr-{{ solr_cloud_version }}"
+    dest: "{{ solr_base }}/{{ solr_user }}"
+    state: link
+    force: yes
+
 - name: SolrCloud | Ensure Solr dirs exists
   file:
     path: "{{ item }}"
@@ -26,6 +43,8 @@
   with_items:
     - "{{ solr_log_dir }}"
     - "{{ solr_data_dir }}"
+
+
 
 #- name: SolrCloud | Copy Solr Binary Package
 #  copy:

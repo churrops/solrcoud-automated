@@ -21,6 +21,7 @@
   template:
     src: templates/myid.j2
     dest: "{{ zk_dataDir }}/myid"
+  ignore_errors: True
 
 - name: Zookeeper | Copy systemd file
   template:

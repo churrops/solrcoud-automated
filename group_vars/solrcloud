@@ -8,6 +8,7 @@ solr_group: solr
 
 solr_log_dir: /var/log/solr
 solr_home: /opt/solr
+solr_base: /opt
 solr_data_dir: "{{ solr_home }}/data"
 
 # Diretorio no host remoto para a cópia dos pacotes
@@ -15,7 +16,7 @@ solr_download_packages_dir: "/opt/packages"
 
 solr_cloud_build_name: "solr-{{ solr_cloud_version }}"
 solr_cloud_package: "{{ solr_cloud_build_name }}.tgz"
-solr_cloud_url: "http://archive.apache.org/dist/lucene/solr/{{ solr_cloud_version }}/{{ solr_cloud_package }}"
+solr_get_url: "http://archive.apache.org/dist/lucene/solr/{{ solr_cloud_version }}/{{ solr_cloud_package }}"
 
 ##################################
 ## Variables - Zookeper
