@@ -19,4 +19,4 @@ zk_tickTime: 2000
 zk_dataDir: "{{ zk_home_dir }}/{{ zk_user }}/data"
 zk_logDir: "{{ zk_home_dir }}/{{ zk_user }}/logs"
 zk_state: started
-
+#zk_myid: 
