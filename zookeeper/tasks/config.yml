@@ -36,5 +36,6 @@
   service:
     name: "{{ zk_user }}"
     state: "{{ zk_state }}"
+    enabled: yes
     daemon_reload: yes
 
