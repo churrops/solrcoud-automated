@@ -1,1 +1,11 @@
-"{{ loop.index }}"
+{% for server in zk_servers %}
+{% if server.host is defined %}
+{% if server.host == inventory_hostname %}
+{{ server.id }}
+{% endif %}
+{% else %}
+{% if server == inventory_hostname %}
+{{ loop.index }}
+{% endif %}
+{% endif %}
+{% endfor %}

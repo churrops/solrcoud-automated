@@ -7,7 +7,8 @@
   user:
     name: "{{ zk_user }}"
     group: "{{ zk_group }}"
-    home: "/bin/false"
+    comment: "{{ zk_user system user }}"
+    home: "/home/{{ zk_user }}"
     system: yes
 
 ### Use this task for 
@@ -25,7 +26,7 @@
     remote_src: yes
     creates: "{{ zk_home_dir }}/{{ zk_user }}/conf/zoo.cfg"
 
-- name: Zookepeer | Create symbol link
+- name: Zookepeer | Create symbolic link
   file:
     src: "{{ zk_home_dir }}/zookeeper-{{ zk_version }}"
     dest: "{{ zk_home_dir }}/{{ zk_user }}"
