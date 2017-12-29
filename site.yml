@@ -1,10 +1,11 @@
 ---
-- name: Oracle JDK 8
+- name: System Prep
   hosts: all
   remote_user: root
 
   roles:
-    - { role: oracle-java8, when: ansible_os_family == 'RedHat' }
+    - { role: oracle-java8, 	when: ansible_os_family == 'RedHat' }
+    - { role: common, 		when: ansible_os_family == 'RedHat' }
 
 - name: Zookeeper
   hosts: zookeeper
