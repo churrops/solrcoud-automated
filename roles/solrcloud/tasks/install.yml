@@ -14,8 +14,7 @@
   user:
     name: "{{ solr_user }}"
     group: "{{ solr_group }}"
-    home: "/bin/false"
-    system: yes
+    home: "/bin/bash"
     createhome: yes
 
 - name: SolrCloud | Extract Package

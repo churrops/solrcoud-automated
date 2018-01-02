@@ -15,8 +15,8 @@
     dest: "{{ zk_home_dir }}/{{ zk_user }}/conf/zoo.cfg"
     owner: "{{ zk_user }}"
     group: "{{ zk_group }}"
-  with_items: "{{ groups['zookeeper'] }}"
   notify: restart zookeeper
+  with_items: "{{ groups['zookeeper'] }}"
 
 - name: Zookeeper | Create myid file
   template:

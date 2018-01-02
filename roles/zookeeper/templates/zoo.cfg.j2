@@ -1,9 +1,10 @@
-clientPort={{ zk_port }}
-dataDir={{ zk_dataDir }}
-tickTime={{ zk_tickTime }}
-initLimit=10
-syncLimit=5
+clientPort={{zk_clientPort}}
+tickTime={{zk_tickTime}}
+initLimit={{zk_initLimit}}
+syncLimit={{zk_syncLimit}}
+dataDir={{zk_dataDir}}
+logDir="{{zk_home_dir}}/{{zk_user}}/logs"
 
-{% for host in zk_servers %}
-server.{{ loop.index }}={{ hostvars[host].ansible_default_ipv4.address }}:2888:3888
+{% for server in zk_servers %}
+server.{{ hostvars[server]['id'] }}={{ server }}:{{zk_clusterPorts}}
 {% endfor %}

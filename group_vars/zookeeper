@@ -12,11 +12,15 @@ zk_tmp_dir: /tmp
 zk_home_dir: /opt
 zk_get_url: "https://archive.apache.org/dist/zookeeper/zookeeper-{{ zk_version }}/{{ zk_package }}"
 #zk_get_url: "{{ zk_tmp_dir }}/{{ zk_package }}"
+zk_state: started
 
 # zoo.cfg
-zk_port: 2181
+zk_clientPort: 2181 
 zk_tickTime: 2000
+zk_initLimit: 10
+zk_syncLimit: 5
 zk_dataDir: "{{ zk_home_dir }}/{{ zk_user }}/data"
 zk_logDir: "{{ zk_home_dir }}/{{ zk_user }}/logs"
-zk_state: started
+zk_clusterPorts: "2888:3888"
+
 #zk_myid: 
