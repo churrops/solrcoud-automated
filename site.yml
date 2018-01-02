@@ -4,19 +4,19 @@
   remote_user: root
 
   roles:
-    - { role: oracle-java8, 	when: ansible_os_family == 'RedHat' }
-    - { role: common, 		when: ansible_os_family == 'RedHat' }
+    - { role: roles/oracle-java8, when: ansible_os_family == 'RedHat' }
+    - { role: roles/common, when: ansible_os_family == 'RedHat' }
 
 - name: Zookeeper
   hosts: zookeeper
   remote_user: root
 
   roles:
-    - { role: zookeeper,  when: ansible_os_family == 'RedHat' }
+    - { role: roles/zookeeper, when: ansible_os_family == 'RedHat' }
 
 - name: SolrCloud
   hosts: solrcloud
   remote_user: root
 
   roles:
-    - { role: solrcloud, when: ansible_os_family == 'RedHat' }
+    - { role: roles/solrcloud, when: ansible_os_family == 'RedHat' }

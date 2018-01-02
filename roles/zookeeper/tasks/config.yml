@@ -13,8 +13,8 @@
   template: 
     src: templates/zoo.cfg.j2
     dest: "{{ zk_home_dir }}/{{ zk_user }}/conf/zoo.cfg"
-    owner: zookeeper
-    group: zookeeper
+    owner: "{{ zk_user }}"
+    group: "{{ zk_group }}"
   with_items: "{{ groups['zookeeper'] }}"
   notify: restart zookeeper
 
@@ -23,7 +23,7 @@
     src: templates/myid.j2
     dest: "{{ zk_dataDir }}/myid"
   ignore_errors: True
-  notify: restart httpd
+  notify: restart zookeeper
 
 - name: Zookeeper | Copy systemd file
   template:

@@ -7,7 +7,7 @@
   user:
     name: "{{ zk_user }}"
     group: "{{ zk_group }}"
-    comment: "{{ zk_user system user }}"
+    comment: "{{ zk_user }} system user"
     home: "/home/{{ zk_user }}"
     system: yes
 
