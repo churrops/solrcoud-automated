@@ -3,7 +3,7 @@ tickTime={{zk_tickTime}}
 initLimit={{zk_initLimit}}
 syncLimit={{zk_syncLimit}}
 dataDir={{zk_dataDir}}
-logDir="{{zk_home_dir}}/{{zk_user}}/logs"
+logDir={{zk_logDir}}
 
 {% for server in zk_servers %}
 server.{{ hostvars[server]['id'] }}={{ server }}:{{zk_clusterPorts}}

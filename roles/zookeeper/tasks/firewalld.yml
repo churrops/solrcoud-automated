@@ -1,0 +1,6 @@
+---
+- name: Firewalld
+  firewalld:
+    port: */tcp
+    permanent: true
+    state: enabled

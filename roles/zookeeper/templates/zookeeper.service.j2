@@ -1,17 +1,17 @@
 [Unit]
-Description={{ zk_user }} server 
+Description={{zk_user}} server 
 Documentation=http://zookeeper.apache.org
 Requires=network.target 
 After=network.target 
  
 [Service]
 Type=forking
-User={{ zk_user }}
-Group={{ zk_user }}
-SyslogIdentifier={{ zk_user }}
-ExecStart={{ zk_home_dir }}/{{ zk_user }}/bin/zkServer.sh start
-ExecStop={{ zk_home_dir }}/{{ zk_user }}/bin/zkServer.sh stop
-ExecReload={{ zk_home_dir }}/{{ zk_user }}/bin/zkServer.sh restart
+User={{zk_user}}
+Group={{zk_user}}
+SyslogIdentifier={{zk_user}}
+ExecStart={{zk_home_dir}}/{{zk_user}}/bin/zkServer.sh start
+ExecStop={{zk_home_dir}}/{{zk_user}}/bin/zkServer.sh stop
+ExecReload={{zk_home_dir}}/{{zk_user}}/bin/zkServer.sh restart
  
 [Install]
 WantedBy=multi-user.target

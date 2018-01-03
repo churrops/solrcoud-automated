@@ -19,9 +19,9 @@
   tags: java
 
 - name: Oracle JDK | Check if package is installed
-  command: yum list jdk1.8
-  register: jdk
-  ignore_errors: True
+  stat:
+    path: /usr/java/jdk1.8.0_151
+  register: jdkdir
   tags: java
 
 - name: Oracle JDK | Download
@@ -29,7 +29,7 @@
     url: "{{ jdk_get_url }}"
     headers: "{{ jdk_headers }}"
     dest: "/tmp/{{ jdk_package }}"
-  when: jdk.rc != 0 
+  when: jdkdir.stat.exists == False 
   tags: java
 
 #### Use this task if exist jdk rpm file in files directory
@@ -45,12 +45,11 @@
   yum:
     name: "/tmp/{{ jdk_package }}"
     state: present
-  when: jdk.rc != 0
+  when: jdkdir.stat.exists == False
   tags: java
 
 - name: Oracle JDK | Remove file
   file: 
     name: "/tmp/{{ jdk_package }}"
     state: absent
-  when: jdk.rc == 0
   tags: java
