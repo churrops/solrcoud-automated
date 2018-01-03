@@ -2,19 +2,43 @@
 ##################################
 ## Variables - Solr
 ##################################
-solr_cloud_version: 7.1.0
+solr_version: 7.2.0
 solr_user: solr
 solr_group: solr
+solr_package: "solr-{{ solr_version }}.tgz"
+solr_servers: "{{ groups['solr']}}"
+solr_tmp_dir: "/tmp"
 
-solr_log_dir: /var/log/solr
-solr_home: /opt/solr
-solr_base: /opt
+solr_get_url: "http://ftp.unicamp.br/pub/apache/lucene/solr/{{ solr_version }}/solr-{{ solr_version }}.tgz"
+
+solr_home_dir: "/opt"
+solr_install_dir: "{{ solr_home_dir}}/solr"
 solr_data_dir: "{{ solr_home }}/data"
 
+solr_baseDir: /solr
+solr_logDir: "{{solr_baseDir}}/logs"
+solr_dataDir: "{{solr_baseDir}}/data"
+
+solr_zk_client_timeout: 15000
+solr_heap_space: 
+solr_port: 8983
+solr_enable_remote_jmx_opts: false
+solr_xms: "512m"
+solr_xmx: "512m"
+
 # Diretorio no host remoto para a cópia dos pacotes
-solr_download_packages_dir: "/opt/packages"
 
-solr_cloud_build_name: "solr-{{ solr_cloud_version }}"
-solr_cloud_package: "{{ solr_cloud_build_name }}.tgz"
-solr_get_url: "http://archive.apache.org/dist/lucene/solr/{{ solr_cloud_version }}/{{ solr_cloud_package }}"
+# CREATE COLLECTIONS
 
+#solr_collections:
+#  - name: collection1
+#    upload_to_zookeeper: True
+#    config_local_folder: solr_configs/collection1
+#    copy_remote_folder: /home/ubuntu
+#    config_remote_folder: /home/ubuntu/collection1
+#    zk_configset_name: collection1
+#    create_collection: True
+#    collection_name: collection1
+#    number_shards: 3
+#    replication_factor: 2
+#    max_shards_per_node: 1

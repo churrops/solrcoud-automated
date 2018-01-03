@@ -1,8 +1,5 @@
 ---
-# handlers file for solrcloud
-- name: restart SolrCloud
-  systemd:
-    name: "{{ solr_service_name }}"
+- name: restart solr
+  service:
+    name: "{{solr_user}}"
     state: restarted
-  when: solr_service_state != 'stopped'
-

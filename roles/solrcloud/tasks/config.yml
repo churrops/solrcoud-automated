@@ -1,0 +1,29 @@
+---
+#- name: SolrCloud | Check if service is running
+#  command: systemctl status solr.service
+#  ignore_errors: yes
+#  changed_when: false
+#  register: service_solrcloud_status
+
+- name: SolrCoud | Copy ENV file solr-in.sh file
+  template: 
+    src: templates/solr-in.sh.j2
+    dest: "/etc/default/{{solr_user}}-in.sh"
+    owner: "{{solr_user}}" 
+    group: "{{solr_group}}"
+  notify:
+    - restart solr
+
+- name: SolrCloud | Copy init service file
+  template:
+    src: templates/solr-service.j2
+    dest: "/etc/init.d/{{solr_user}}"
+    owner: "root"
+    group: "root"
+    mode: "ugo+x"
+
+- name: SolrCoud | Ensure started and enabled
+  service:
+    name: "{{solr_user}}"
+    state: started
+    enabled: yes

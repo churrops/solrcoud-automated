@@ -12,48 +12,33 @@
 
 - name: SolrCloud | Ensure Solr User
   user:
-    name: "{{ solr_user }}"
-    group: "{{ solr_group }}"
-    home: "/bin/bash"
+    name: "{{solr_user}}"
+    group: "{{solr_group}}"
+    home: "/home/{{solr_user}}"
     createhome: yes
 
 - name: SolrCloud | Extract Package
   unarchive:
-    src: "{{ solr_get_url }}"
-    dest: "{{ solr_base }}"
-    owner: "{{ solr_user }}"
-    group: "{{ solr_group }}"
+    src: "{{solr_get_url}}"
+    dest: "{{solr_home_dir}}"
+    owner: "{{solr_user}}"
+    group: "{{solr_group}}"
     remote_src: yes
-    creates: "{{ solr_base }}/solr-{{ solr_cloud_version }}/server/etc/jetty.xml"
+    creates: "{{solr_home_dir}}/solr-{{solr_version}}/bin/solr"
 
 - name: SolrCloud | Create symbol link
   file:
-    src: "{{ solr_base }}/solr-{{ solr_cloud_version }}"
-    dest: "{{ solr_base }}/{{ solr_user }}"
+    src: "{{solr_home_dir}}/solr-{{solr_version}}"
+    dest: "{{solr_home_dir}}/{{solr_user}}"
     state: link
     force: yes
 
 - name: SolrCloud | Ensure Solr dirs exists
   file:
-    path: "{{ item }}"
+    path: "{{item}}"
     state: directory
-    owner: "{{ solr_user }}"
-    group: "{{ solr_group }}"
+    owner: "{{solr_user}}"
+    group: "{{solr_group}}"
   with_items:
-    - "{{ solr_log_dir }}"
-    - "{{ solr_data_dir }}"
-
-
-
-#- name: SolrCloud | Copy Solr Binary Package
-#  copy:
-#    src: "files/{{ solr_cloud_package }}"
-#    dest: "{{ solr_download_packages_dir }}/{{ solr_cloud_package }}"
-#    force: no
-
-#- name: SolrCloud | Firewalld
-#  firewalld:
-#    port: "{{ solr_cloud_port }}/tcp"
-#    permanent: true
-#    state: enabled
-#    zone: public
+    - "{{ solr_logDir }}"
+    - "{{ solr_dataDir }}"
