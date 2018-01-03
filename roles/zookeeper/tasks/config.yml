@@ -1,4 +1,11 @@
 ---
+- name: Zookeeper | Copy systemd file
+  template:
+    src: templates/zookeeper.service.j2
+    dest: "/etc/systemd/system/{{zk_user}}.service"
+    owner: root
+    group: root
+
 - name: Zookeeper | Create dataDir and logDir
   file:
     path: "{{item}}"
@@ -20,18 +27,22 @@
   notify: restart zookeeper
   with_items: "{{groups['zookeeper']}}"
 
+- name: Zookeeper | Configure zookeeper-env.sh
+  template: 
+    src: templates/zookeeper-env.sh.j2 
+    dest: "{{ zk_conf_dir }}/zookeeper-env.sh"
+    owner: "{{zk_user}}" 
+    group: "{{zk_group}}"
+  notify:
+    - restart zookeeper
+  when: zk_env is defined and zk_env|length > 0
+  tags: env-file 
+
 - name: Zookeeper | Create myid file
   template:
     src: templates/myid.j2
     dest: "{{zk_dataDir}}/myid"
   notify: restart zookeeper
-
-- name: Zookeeper | Copy systemd file
-  template:
-    src: templates/zookeeper.service.j2
-    dest: "/etc/systemd/system/{{zk_user}}.service"
-    owner: root
-    group: root
 
 - name: Zookeeper | Start Zookeeper Service
   service:
