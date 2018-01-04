@@ -37,3 +37,4 @@ all  solrcloud  zoopeker
 ```sh
 ./deploy.sh aws chave.pem
 ```
+https://wiki.apache.org/solr/ShawnHeisey
