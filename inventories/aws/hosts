@@ -1,0 +1,9 @@
+[solrcloud]
+ip-172-31-32-156.ec2.internal ansible_user=centos  become=true
+ip-172-31-40-72.ec2.internal ansible_user=centos  become=true
+ip-172-31-32-162.ec2.internal ansible_user=centos  become=true
+
+[zookeeper]
+ip-172-31-32-156.ec2.internal ansible_user=centos id=1  become=true
+ip-172-31-40-72.ec2.internal ansible_user=centos id=2  become=true
+ip-172-31-32-162.ec2.internal ansible_user=centos id=3  become=true
