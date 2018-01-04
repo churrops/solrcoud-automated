@@ -12,7 +12,7 @@ cd solrcloud-automated
 ## 2. Configurando ajustando os hosts
 
 ```sh
-vim inventories/aws/hosts 
+vim ansible/inventories/aws/hosts 
 
 [solrcloud]
 192.168.99.100 ansible_user=root ansible_ssh_pass=template
