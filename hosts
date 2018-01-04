@@ -1,9 +1,20 @@
 [solrcloud]
-192.168.99.101 ansible_user=root ansible_ssh_pass=template
-192.168.99.102 ansible_user=root ansible_ssh_pass=template
-192.168.99.103 ansible_user=root ansible_ssh_pass=template
+192.168.99.104 ansible_user=centos  become=true
+192.168.99.105 ansible_user=centos  become=true
+192.168.99.106 ansible_user=centos  become=true
 
 [zookeeper]
-192.168.99.101 ansible_user=root ansible_ssh_pass=template id=1
-192.168.99.102 ansible_user=root ansible_ssh_pass=template id=2
-192.168.99.103 ansible_user=root ansible_ssh_pass=template id=3
+192.168.99.104 ansible_user=centos id=1  become=true
+192.168.99.105 ansible_user=centos id=2  become=true
+192.168.99.106 ansible_user=centos id=3  become=true
+
+
+#[solrcloud]
+#192.168.99.104 ansible_user=root ansible_ssh_pass=template
+#192.168.99.105 ansible_user=root ansible_ssh_pass=template
+#192.168.99.106 ansible_user=root ansible_ssh_pass=template
+#
+#[zookeeper]
+#192.168.99.104 ansible_user=root ansible_ssh_pass=template id=1
+#192.168.99.105 ansible_user=root ansible_ssh_pass=template id=2
+#192.168.99.106 ansible_user=root ansible_ssh_pass=template id=3
