@@ -2,6 +2,7 @@
 ##################################
 ## Variables - Solr
 ##################################
+solr_inst_name: solr
 solr_version: 7.2.0
 solr_user: solr
 solr_group: solr
@@ -14,6 +15,9 @@ solr_get_url: "http://ftp.unicamp.br/pub/apache/lucene/solr/{{ solr_version }}/s
 solr_home_dir: "/opt"
 solr_install_dir: "{{ solr_home_dir}}/solr"
 solr_data_dir: "{{ solr_home }}/data"
+
+zk_clientPort: 2181 
+zk_servers: "{{groups['zookeeper']}}"
 
 solr_baseDir: /solr
 solr_logDir: "{{solr_baseDir}}/logs"

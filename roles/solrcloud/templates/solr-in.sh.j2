@@ -12,7 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+SOLR_MODE="solrcloud"
 # By default the script will use JAVA_HOME to determine which java
 # to use, but you can set a specific path for Solr to use without
 # affecting other Java applications on your server/workstation.
@@ -49,10 +49,7 @@ GC_TUNE="-XX:NewRatio=3 \
 # e.g. host1:2181,host2:2181/chroot
 # Leave empty if not using SolrCloud
 
-ZK_HOST="{% for host in groups['zookeeper']  %}
-{{ host }}:2888:3888
-{%- if loop.first %},{% endif %}
-{% endfor %}"
+ZK_HOST="{% for server in zk_servers %}{{server}}:{{zk_clientPort}}{%if loop.index0 <= ( zk_servers|length - 1)%},{% endif %}{% endfor %}"
 
 # Set the ZooKeeper client timeout (for SolrCloud mode)
 ZK_CLIENT_TIMEOUT="{{solr_zk_client_timeout}}"
@@ -92,7 +89,7 @@ SOLR_PID_DIR="{{solr_baseDir}}"
 # however, you may want to customize the log settings and file appender location
 # so you can point the script to use a different log4j.properties file
 #LOG4J_PROPS=/var/solr/log4j.properties
-LOG4J_PROPS="{{solr_data_dir}}/log4j.properties"
+LOG4J_PROPS="{{solr_install_dir}}/log4j.properties"
 
 # Location where Solr should write logs to; should agree with the file appender
 # settings in server/resources/log4j.properties
