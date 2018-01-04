@@ -17,20 +17,20 @@
     - {name: vm.swappiness, value: 1 }
   tags: setup
 
-- name: Firewalld Service | Stop and disable firewalld
-  service: 
-    name: firewalld 
-    state: stopped 
-    enabled: no
-  tags: firewalld
-
-- name: SELinux | disable
-  selinux:
-    state: disabled
-  tags: selinux
-
-- name: SELinux | setenforce 0
-  command: "setenforce 0"
-  ignore_errors: true
-  changed_when: false
-  tags: selinux
+#- name: Firewalld Service | Stop and disable firewalld
+#  service: 
+#    name: firewalld 
+#    state: stopped 
+#    enabled: no
+#  tags: firewalld
+#
+#- name: SELinux | disable
+#  selinux:
+#    state: disabled
+#  tags: selinux
+#
+#- name: SELinux | setenforce 0
+#  command: "setenforce 0"
+#  ignore_errors: true
+#  changed_when: false
+#  tags: selinux

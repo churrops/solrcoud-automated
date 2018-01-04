@@ -1,12 +1,12 @@
 [solrcloud]
-192.168.99.104 ansible_user=centos  become=true
-192.168.99.105 ansible_user=centos  become=true
-192.168.99.106 ansible_user=centos  become=true
+ip-172-31-84-190.ec2.internal ansible_user=centos  become=true
+ip-172-31-85-58.ec2.internal ansible_user=centos  become=true
+ip-172-31-90-23.ec2.internal ansible_user=centos  become=true
 
 [zookeeper]
-192.168.99.104 ansible_user=centos id=1  become=true
-192.168.99.105 ansible_user=centos id=2  become=true
-192.168.99.106 ansible_user=centos id=3  become=true
+ip-172-31-84-190.ec2.internal ansible_user=centos id=1  become=true
+ip-172-31-85-58.ec2.internal  ansible_user=centos id=2  become=true
+ip-172-31-90-23.ec2.internal  ansible_user=centos id=3  become=true
 
 
 #[solrcloud]
