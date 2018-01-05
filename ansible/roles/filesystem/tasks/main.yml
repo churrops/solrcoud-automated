@@ -1,0 +1,33 @@
+---
+- name: FileSystem | Create dataDir and logDir
+  file:
+    path: "{{item}}"
+    state: directory
+    recurse: yes
+    force: yes
+  with_items:
+    - "{{solr_install_dir}}"
+    - "{{zk_baseDir}}"
+  tags: filesystem
+
+- name: Filesystem |  Format filesystem
+  filesystem:
+    fstype: ext4
+    dev: "{{item}}"
+    opts: "-m0"
+  with_items:
+    - "{{device_zookeeper}}"
+    - "{{device_solrcloud}}"
+  tags: filesystem
+
+- name: Filesystem | Mount in /etc/fstab
+  mount:
+    path: "{{item.path}}"
+    src: "{{item.device}}"
+    fstype: ext4
+    opts: noatime
+    state: present
+  with_items:
+    - { path: "{{device_solrcloud}}", device: "{{solr_install_dir}}" }
+    - { path: "{{device_zookeeper}}", device: "{{zk_baseDir}}" }
+  tags: filesystem

@@ -27,3 +27,4 @@ zk_clusterPorts: "2888:3888"
 
 #zk_myid: 
 zk_env: "ZOO_LOG_DIR={{zk_logDir}}"
+device_zookeeper: "/dev/sdz"
