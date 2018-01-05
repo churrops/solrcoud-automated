@@ -11,8 +11,6 @@ if [[ -z "$ENV" || -z "$PRIVATE_SSH_KEY" ]]; then
 	echo ""
 	echo "Exemples:"	
 	echo ""
-#	echo "	Staging 	= $0 stg ~/.ssh/id_rsa"
-#	echo "	Production 	= $0 prd ~/.ssh/id_rsa"
 	echo "	AWS	 	= $0 prd ~/.ssh/id_rsa"
 	echo ""
 	exit 1

@@ -4,3 +4,4 @@
     port: */tcp
     permanent: true
     state: enabled
+  tags: zookeeper

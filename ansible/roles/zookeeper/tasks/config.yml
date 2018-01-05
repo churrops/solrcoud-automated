@@ -5,6 +5,7 @@
     dest: "/etc/systemd/system/{{zk_user}}.service"
     owner: root
     group: root
+  tags: zookeeper
 
 - name: Zookeeper | Create dataDir and logDir
   file:
@@ -17,6 +18,7 @@
   with_items:
     - "{{zk_dataDir}}"
     - "{{zk_logDir}}"
+  tags: zookeeper
 
 - name: Zookeeper | Copy zoo.cfg file
   template: 
@@ -26,6 +28,7 @@
     group: "{{zk_group}}"
   notify: restart zookeeper
   with_items: "{{groups['zookeeper']}}"
+  tags: zookeeper
 
 - name: Zookeeper | Configure zookeeper-env.sh
   template: 
@@ -37,12 +40,14 @@
     - restart zookeeper
   when: zk_env is defined and zk_env|length > 0
   tags: env-file 
+  tags: zookeeper
 
 - name: Zookeeper | Create myid file
   template:
     src: templates/myid.j2
     dest: "{{zk_dataDir}}/myid"
   notify: restart zookeeper
+  tags: zookeeper
 
 - name: Zookeeper | Start Zookeeper Service
   service:
@@ -50,3 +55,4 @@
     state: "{{zk_state}}"
     enabled: yes
     daemon_reload: yes
+  tags: zookeeper

@@ -5,10 +5,12 @@
     - lsof
     - wget
     - vim
+  tags: solrcloud
 
 - name: SolrCloud | Ensure Solr Group
   group: 
     name: "{{ solr_group }}"
+  tags: solrcloud
 
 - name: SolrCloud | Ensure Solr User
   user:
@@ -16,6 +18,7 @@
     group: "{{solr_group}}"
     home: "/home/{{solr_user}}"
     createhome: yes
+  tags: solrcloud
 
 - name: SolrCloud | Extract Package
   unarchive:
@@ -25,6 +28,7 @@
     group: "{{solr_group}}"
     remote_src: yes
     creates: "{{solr_home_dir}}/solr-{{solr_version}}/bin/solr"
+  tags: solrcloud
 
 - name: SolrCloud | Create symbol link
   file:
@@ -32,6 +36,7 @@
     dest: "{{solr_home_dir}}/{{solr_user}}"
     state: link
     force: yes
+  tags: solrcloud
 
 - name: SolrCloud | Ensure Solr dirs exists
   file:
@@ -42,3 +47,4 @@
   with_items:
     - "{{ solr_logDir }}"
     - "{{ solr_dataDir }}"
+  tags: solrcloud

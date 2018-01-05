@@ -7,6 +7,7 @@
     group: "root"
     mode: "755"
   notify: restart solrcloud
+  tags: solrcloud
 
 - name: SolrCloud | Configuring logging
   template:
@@ -14,6 +15,7 @@
     dest: "{{solr_install_dir}}/log4j.properties"
     force: yes
   notify: restart solrcloud
+  tags: solrcloud
 
 - name: SolrCoud | Copy ENV file solr-in.sh file
   template: 
@@ -22,9 +24,11 @@
     owner: "{{solr_user}}" 
     group: "{{solr_group}}"
   notify: restart solrcloud
+  tags: solrcloud
 
 - name: SolrCoud | Ensure started and enabled
   service:
     name: "{{solr_user}}"
     state: started
     enabled: yes
+  tags: solrcloud

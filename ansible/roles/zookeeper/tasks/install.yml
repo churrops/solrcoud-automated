@@ -2,6 +2,7 @@
 - name: Zookepeer | Ensure Group
   group:
     name: "{{zk_group}}"
+  tags: zookeeper
 
 - name: Zookepeer | Ensure User
   user:
@@ -10,6 +11,7 @@
     comment: "{{ zk_user }} system user"
     home: "/home/{{zk_user}}"
     system: yes
+  tags: zookeeper
 
 ### Use this task for 
 #- name: Zookepeer | Copy binary package
@@ -25,6 +27,7 @@
     group: "{{zk_group}}"
     remote_src: yes
     creates: "{{zk_home_dir}}/{{zk_user}}/conf/zoo.cfg"
+  tags: zookeeper
 
 - name: Zookepeer | Create symbolic link
   file:
@@ -32,8 +35,10 @@
     dest: "{{zk_home_dir}}/{{zk_user}}"
     state: link
     force: yes
+  tags: zookeeper
 
 - name: Zookeeper | Remove binary package 
   file: 
     path: "{{zk_tmp_dir}}/{{zk_package}}"
     state: absent
+  tags: zookeeper
