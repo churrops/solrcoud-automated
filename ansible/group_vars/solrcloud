@@ -30,6 +30,7 @@ solr_enable_remote_jmx_opts: false
 solr_xms: "8g"
 solr_xmx: "8g"
 
+device_solrcloud: "/dev/sds"
 # Diretorio no host remoto para a cópia dos pacotes
 
 # CREATE COLLECTIONS
