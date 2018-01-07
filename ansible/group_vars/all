@@ -3,8 +3,11 @@ jdk_version: "8u151"
 jdk_package: "jdk-{{ jdk_version }}-linux-x64.rpm"
 jdk_get_url: "http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.rpm"
 jdk_headers: "Cookie:oraclelicense=accept-securebackup-cookie"
-
 jdk_checksum: "md5:7f09893e12aadef39e0751ec657cc7d8"
+
+zk_clientPort: 2181
+solr_servers: "{{groups['solr']}}"
+zk_servers: "{{groups['zookeeper']}}"
 
 # Configuracoes de disco
 fstype: ext4

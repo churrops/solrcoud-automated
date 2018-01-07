@@ -30,18 +30,18 @@ solr_logDir: "{{solr_homeDir}}/logs"
 solr_dataDir: "{{solr_homeDir}}/data"
 
 solr_zk_client_timeout: 15000
-
+zk_servers: "{{groups['zookeeper']}}"
 
 # Configuracoes da JVM, em maquinas rodando Solr dedicado pode-se utilizar
 # em torno de 80% da memoria total existente
 
 solr_enable_remote_jmx_opts: false
-solr_heap_space: "512m"
-solr_xms: "512m"
-solr_xmx: "512m"
+solr_heap_space: "450m"
+solr_xms: "450m"
+solr_xmx: "450m"
 
+# Configuracoes do g1gc
 # https://wiki.apache.org/solr/ShawnHeisey
 solr_G1HeapRegionSize: 8m
 solr_MaxGCPauseMillis: 250
 solr_InitiatingHeapOccupancyPercent: 75
-
