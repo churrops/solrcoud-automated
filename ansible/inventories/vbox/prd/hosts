@@ -1,0 +1,13 @@
+[zookeeper]
+192.168.99.100 
+192.168.99.101
+192.168.99.102
+
+[solrcloud]
+192.168.99.100 id=1
+192.168.99.101 id=2
+192.168.99.102 id=3
+
+[all:vars]
+ansible_user=root
+ansible_ssh_pass=template

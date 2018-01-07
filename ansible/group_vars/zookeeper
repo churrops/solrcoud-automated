@@ -3,20 +3,21 @@
 ## Variables - Zookeper
 ##################################
 zk_version: 3.4.10
+zk_package: "zookeeper-{{ zk_version }}.tar.gz"
+zk_get_url: "https://archive.apache.org/dist/zookeeper/zookeeper-{{ zk_version }}/{{ zk_package }}"
+
+zk_inst_name: zookeeper
 zk_user: zookeeper
 zk_group: zookeeper
-zk_package: "zookeeper-{{ zk_version }}.tar.gz"
 zk_servers: "{{ groups['zookeeper'] }}"
 
 zk_tmp_dir: /tmp
-zk_home_dir: /opt
-zk_conf_dir: "{{zk_home_dir}}/{{zk_user}}/conf"
-zk_get_url: "https://archive.apache.org/dist/zookeeper/zookeeper-{{ zk_version }}/{{ zk_package }}"
-#zk_get_url: "{{ zk_tmp_dir }}/{{ zk_package }}"
+zk_install_dir: /opt
+zk_conf_dir: "{{zk_install_dir}}/{{zk_inst_name}}/conf"
 zk_state: started
 
 # zoo.cfg
-zk_clientPort: 2181 
+zk_clientPort: 2181
 zk_tickTime: 2000
 zk_initLimit: 10
 zk_syncLimit: 5

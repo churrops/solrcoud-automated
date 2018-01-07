@@ -2,7 +2,7 @@
 - name: Zookeeper | Copy systemd file
   template:
     src: templates/zookeeper.service.j2
-    dest: "/etc/systemd/system/{{zk_user}}.service"
+    dest: "/etc/systemd/system/{{zk_inst_name}}.service"
     owner: root
     group: root
   tags: zookeeper
@@ -23,7 +23,7 @@
 - name: Zookeeper | Copy zoo.cfg file
   template: 
     src: templates/zoo.cfg.j2
-    dest: "{{zk_home_dir}}/{{zk_user}}/conf/zoo.cfg"
+    dest: "{{zk_install_dir}}/{{zk_inst_name}}/conf/zoo.cfg"
     owner: "{{zk_user}}"
     group: "{{zk_group}}"
   notify: restart zookeeper
@@ -39,7 +39,6 @@
   notify:
     - restart zookeeper
   when: zk_env is defined and zk_env|length > 0
-  tags: env-file 
   tags: zookeeper
 
 - name: Zookeeper | Create myid file
@@ -51,7 +50,7 @@
 
 - name: Zookeeper | Start Zookeeper Service
   service:
-    name: "{{zk_user}}"
+    name: "{{zk_inst_name}}"
     state: "{{zk_state}}"
     enabled: yes
     daemon_reload: yes

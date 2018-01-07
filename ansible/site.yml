@@ -4,19 +4,18 @@
   become: True
 
   roles:
-    - { role: roles/oracle-java8, when: ansible_os_family == 'RedHat' }
-    - { role: roles/common, when: ansible_os_family == 'RedHat' }
-    - { role: roles/filesystem, when: ansible_os_family == 'RedHat' }
+    - roles/common 
+    - roles/oracle-java8
+#    - roles/filesystem
 
 - name: Configurando o Zookeeper
   hosts: zookeeper
-  become: True
 
   roles:
-    - { role: roles/zookeeper, when: ansible_os_family == 'RedHat' }
+    - roles/zookeeper
 
 - name: Configurando o SolrCloud
   hosts: solrcloud
-  become: True
+  
   roles:
-    - { role: roles/solrcloud, when: ansible_os_family == 'RedHat' }
+    - roles/solrcloud

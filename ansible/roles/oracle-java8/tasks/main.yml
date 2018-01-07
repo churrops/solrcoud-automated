@@ -7,7 +7,7 @@
 
 - name: Oracle JDK | Remove OpenJDK versions before install Oracle JDK
   yum:
-    name: "{{ item }}"
+    name: "{{item}}"
     state: absent
   with_items:
     - java-1.6.0-openjdk
@@ -20,8 +20,8 @@
 
 - name: Oracle JDK | Check if package is installed
   stat:
-    path: /usr/java/jdk1.8.0_151
-  register: jdkdir
+    path: /usr/bin/java
+  register: javabinary
   tags: java
 
 - name: Oracle JDK | Download
@@ -29,7 +29,8 @@
     url: "{{ jdk_get_url }}"
     headers: "{{ jdk_headers }}"
     dest: "/tmp/{{ jdk_package }}"
-  when: jdkdir.stat.exists == False 
+    checksum: "{{jdk_checksum}}"
+  when: javabinary.stat.exists == False 
   tags: java
 
 #### Use this task if exist jdk rpm file in files directory
@@ -43,13 +44,14 @@
 
 - name: Oracle JDK | Install JDK8
   yum:
-    name: "/tmp/{{ jdk_package }}"
+    name: "/tmp/{{jdk_package}}"
     state: present
-  when: jdkdir.stat.exists == False
+  when: javabinary.stat.exists == False
   tags: java
 
 - name: Oracle JDK | Remove file
   file: 
-    name: "/tmp/{{ jdk_package }}"
+    name: "/tmp/{{jdk_package}}"
     state: absent
+  when: javabinary.stat.exists == False
   tags: java

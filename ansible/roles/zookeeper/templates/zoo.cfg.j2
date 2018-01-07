@@ -1,7 +1,18 @@
+# the port to listen for client connections
+
 clientPort={{zk_clientPort}}
+
+#the basic time unit in milliseconds used by ZooKeeper. It is used to do heartbeats and the minimum session timeout will be twice the tickTime.
+
 tickTime={{zk_tickTime}}
+
+#The new entry, initLimit is timeouts ZooKeeper uses to limit the length of time the ZooKeeper servers in quorum have to connect to a leader. The entry syncLimit limits how far out of date a server can be from a leader.
+
 initLimit={{zk_initLimit}}
 syncLimit={{zk_syncLimit}}
+
+# the location to store the in-memory database snapshots and, unless specified otherwise, the transaction log of updates to the database.
+
 dataDir={{zk_dataDir}}
 logDir={{zk_logDir}}
 

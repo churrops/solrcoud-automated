@@ -1,5 +1,5 @@
 ---
 - name: restart solrcloud
   service:
-    name: "{{solr_user}}"
+    name: "{{solr_inst_name}}"
     state: restarted

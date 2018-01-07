@@ -1,6 +1,8 @@
 ---
+# group_vars/solrcloud
+
 - name: SolrCloud | Ensure dependencies are installed.
-  package: name={{ item }} state=present
+  package: name="{{item}}" state=present
   with_items:
     - lsof
     - wget
@@ -9,7 +11,7 @@
 
 - name: SolrCloud | Ensure Solr Group
   group: 
-    name: "{{ solr_group }}"
+    name: "{{solr_group}}"
   tags: solrcloud
 
 - name: SolrCloud | Ensure Solr User
@@ -23,17 +25,17 @@
 - name: SolrCloud | Extract Package
   unarchive:
     src: "{{solr_get_url}}"
-    dest: "{{solr_home_dir}}"
+    dest: "{{solr_install_dir}}"
     owner: "{{solr_user}}"
     group: "{{solr_group}}"
     remote_src: yes
-    creates: "{{solr_home_dir}}/solr-{{solr_version}}/bin/solr"
+    creates: "{{solr_install_dir}}/solr-{{solr_version}}/bin/solr"
   tags: solrcloud
 
 - name: SolrCloud | Create symbol link
   file:
-    src: "{{solr_home_dir}}/solr-{{solr_version}}"
-    dest: "{{solr_home_dir}}/{{solr_user}}"
+    src: "{{solr_install_dir}}/solr-{{solr_version}}"
+    dest: "{{solr_install_dir}}/{{solr_inst_name}}"
     state: link
     force: yes
   tags: solrcloud

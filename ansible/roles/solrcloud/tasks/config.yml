@@ -2,7 +2,7 @@
 - name: SolrCloud | Copy init service file
   template:
     src: templates/solr-service.j2
-    dest: "/etc/init.d/{{solr_user}}"
+    dest: "/etc/init.d/{{solr_inst_name}}"
     owner: "root"
     group: "root"
     mode: "755"
@@ -12,7 +12,7 @@
 - name: SolrCloud | Configuring logging
   template:
     src: templates/log4j.properties.j2
-    dest: "{{solr_install_dir}}/log4j.properties"
+    dest: "{{solr_homeDir}}/log4j.properties"
     force: yes
   notify: restart solrcloud
   tags: solrcloud
@@ -20,7 +20,7 @@
 - name: SolrCoud | Copy ENV file solr-in.sh file
   template: 
     src: templates/solr-in.sh.j2
-    dest: "/etc/default/{{solr_user}}-in.sh"
+    dest: "/etc/default/{{solr_inst_name}}-in.sh"
     owner: "{{solr_user}}" 
     group: "{{solr_group}}"
   notify: restart solrcloud
@@ -28,7 +28,7 @@
 
 - name: SolrCoud | Ensure started and enabled
   service:
-    name: "{{solr_user}}"
+    name: "{{solr_inst_name}}"
     state: started
     enabled: yes
   tags: solrcloud

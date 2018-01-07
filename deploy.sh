@@ -1,19 +1,22 @@
 #!/bin/bash
 
-ENV=$1
-PRIVATE_SSH_KEY=$2
+PROVIDER=$1
+ENV=$2
+#PRIVATE_SSH_KEY=$2
 ANSIBLE_HOST_KEY_CHECKING=False
 
-if [[ -z "$ENV" || -z "$PRIVATE_SSH_KEY" ]]; then
+if [[ -z "$ENV" || -z "$PROVIDER" ]]; then
 	echo "Please enter the parameter for the environment:"
 	echo ""
 	echo "$0 <env> <path/private/ssh/key>"
 	echo ""
 	echo "Exemples:"	
 	echo ""
-	echo "	AWS	 	= $0 prd ~/.ssh/id_rsa"
+	echo "	VBOX	 	= $0 vbox prd"
+	echo "	AWS	 	= $0 aws prd ~/.ssh/id_rsa"
 	echo ""
 	exit 1
 fi
 
-ansible-playbook -i ansible/inventories/aws/${ENV}/hosts --private-key=${PRIVATE_SSH_KEY} site.yml
+ansible-playbook -i ansible/inventories/${PROVIDER}/${ENV}/hosts ansible/site.yml
+#ansible-playbook -i ansible/inventories/${PROVIDER}/${ENV}/hosts --private-key=${PRIVATE_SSH_KEY} site.yml

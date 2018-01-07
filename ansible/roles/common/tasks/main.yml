@@ -1,8 +1,23 @@
 ---
+#- name: Upgrade all packages
+#  yum:
+#    name: '*'
+#    state: latest
+
+- name: Install yum-utils
+  yum:
+    name: yum-utils
+    state: present
+  tags: setup
+
+- name: Execute yum-complete-transaction
+  shell: yum-complete-transaction --cleanup-only
+
 - name: Install Base Packages
   yum:
-    name: "{{ item }}"
-    state: present
+    name: "{{item}}"
+    state: installed
+    update_cache: yes
   with_items:
     - wget
     - lsof
@@ -12,25 +27,35 @@
   tags: setup
 
 - name: System Preparation | /etc/sysctl.conf
-  sysctl: name={{ item.name }} value={{ item.value }} state=present sysctl_set=yes
+  sysctl: 
+    name: "{{item.name}}" 
+    value: "{{item.value}}" 
+    state: present 
+    sysctl_set: yes
   with_items:
     - {name: vm.swappiness, value: 1 }
   tags: setup
 
-#- name: Firewalld Service | Stop and disable firewalld
-#  service: 
-#    name: firewalld 
-#    state: stopped 
-#    enabled: no
-#  tags: firewalld
-#
-#- name: SELinux | disable
-#  selinux:
-#    state: disabled
-#  tags: selinux
-#
-#- name: SELinux | setenforce 0
-#  command: "setenforce 0"
-#  ignore_errors: true
-#  changed_when: false
-#  tags: selinux
+#- name:
+#  yum:
+#    list: firewalld
+#  register: firewalldpkg
+
+- name: Firewalld Service | Stop and disable firewalld
+  service: 
+    name: firewalld 
+    state: stopped 
+    enabled: no
+  tags: firewalld
+#  when: firewalldpkg.is.instaled
+
+- name: SELinux | disable
+  selinux:
+    state: disabled
+  tags: selinux
+
+- name: SELinux | setenforce 0
+  command: "setenforce 0"
+  ignore_errors: true
+  changed_when: false
+  tags: selinux
