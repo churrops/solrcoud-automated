@@ -1,0 +1,12 @@
+---
+- name:
+  apt_repository:
+    repo: 'ppa:webupd8team/java'
+    state: present
+    update_cache: yes
+
+- name: Update repositories cache and install "java 8" package
+  apt:
+    name: oracle-java8-installer
+    state: present	
+    update_cache: yes
