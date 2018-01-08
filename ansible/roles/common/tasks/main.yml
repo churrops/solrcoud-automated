@@ -41,13 +41,13 @@
 #    list: firewalld
 #  register: firewalldpkg
 
-- name: Firewalld Service | Stop and disable firewalld
-  service: 
-    name: firewalld 
-    state: stopped 
-    enabled: no
-  tags: firewalld
-#  when: firewalldpkg.is.instaled
+#- name: Firewalld Service | Stop and disable firewalld
+#  service: 
+#    name: firewalld 
+#    state: stopped 
+#    enabled: no
+#  tags: firewalld
+##  when: firewalldpkg.is.instaled
 
 - name: SELinux | disable
   selinux:
