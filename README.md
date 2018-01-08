@@ -88,7 +88,7 @@ AWS:
 ```sh
 $ ./deploy.sh aws prd ~/.ssh/id_rsa
 ```
-```
-### To Dos
+
+#### To Dos
 
  - Habilitar autenticação
